@@ -1,23 +1,301 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Welcome to nginx!</title>
-        <style>
-        html { color-scheme: light dark; }
-        body { width: 35em; margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif; }
-        </style>
-    </head>
-    <body>
-        <h1>Welcome to nginx!</h1>
-        <p>If you see this page, the nginx web server is successfully installed and
-        working. Further configuration is required.</p>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radar IA · L'écosystème souverain de l'IA en France</title>
+  <meta name="description" content="Plateforme indépendante de veille et annuaire des acteurs de l'intelligence artificielle en France : modèles ouverts, labos de recherche, serveurs GPU et écosystème.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 min-h-screen flex flex-col font-sans antialiased selection:bg-blue-600 selection:text-white">
 
-        <p>For online documentation and support please refer to
-        <a href="http://nginx.org/">nginx.org</a>.<br/>
-        Commercial support is available at
-        <a href="http://nginx.com/">nginx.com</a>.</p>
+  <!-- En-tête -->
+  <header class="sticky top-0 z-50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-semibold tracking-wide bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>FR
+        </span>
+        <span class="text-base font-bold tracking-tight text-zinc-950 dark:text-white">Radar IA</span>
+        <span class="text-xs text-zinc-400 font-mono hidden sm:inline">version 1.2</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+          Contribuer sur GitHub
+        </a>
+        <button id="themeToggle" class="p-1.5 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white rounded border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 transition-colors" aria-label="Basculer le mode sombre">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-        <p><em>Thank you for using nginx.</em></p>
-    </body>
+  <!-- Section principale -->
+  <section class="pt-16 pb-12 border-b border-zinc-200 dark:border-zinc-800 bg-gradient-to-b from-zinc-100/50 via-transparent to-transparent dark:from-zinc-900/50">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-medium bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 mb-6">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        Veille de l'écosystème open source et souverain
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-white mb-4">
+        L'IA française, sans le bruit.
+      </h1>
+      <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mb-8 max-w-xl mx-auto leading-relaxed">
+        L'annuaire open source qui répertorie les modèles, les labos de recherche, les infrastructures GPU et les pôles d'innovation de l'Hexagone.
+      </p>
+
+      <!-- Barre de recherche -->
+      <div class="relative max-w-lg mx-auto">
+        <input 
+          id="searchInput" 
+          type="text" 
+          placeholder="Rechercher (ex. : Mistral, Moshi, H100, Station F)..." 
+          class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
+        />
+        <svg class="w-4 h-4 text-zinc-400 absolute left-3.5 top-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+
+      <!-- Filtres -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mt-5">
+        <button class="filter-btn active px-3 py-1 rounded text-xs font-medium bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 transition-all" data-category="all">Tout</button>
+        <button class="filter-btn px-3 py-1 rounded text-xs font-medium bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-zinc-300 transition-all" data-category="modeles">Modèles &amp; LLM</button>
+        <button class="filter-btn px-3 py-1 rounded text-xs font-medium bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-zinc-300 transition-all" data-category="labos">Laboratoires &amp; R&amp;D</button>
+        <button class="filter-btn px-3 py-1 rounded text-xs font-medium bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-zinc-300 transition-all" data-category="cloud">GPU &amp; Cloud</button>
+        <button class="filter-btn px-3 py-1 rounded text-xs font-medium bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-zinc-300 transition-all" data-category="communaute">Communauté &amp; Hubs</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Répertoire des fiches -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full">
+    <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      
+      <!-- Mistral AI -->
+      <div class="card bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between" data-category="modeles" data-tags="mistral codestral mixtral llm api open weights paris">
+        <div>
+          <div class="flex items-start justify-between mb-2">
+            <h3 class="font-semibold text-base text-zinc-950 dark:text-white">Mistral AI</h3>
+            <span class="text-[11px] px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 font-mono">Modèles</span>
+          </div>
+          <p class="text-zinc-600 dark:text-zinc-400 text-xs mb-3 leading-normal">
+            Le fleuron tricolore des modèles de fondation. Développeurs de Mistral Large, Codestral et des architectures Mixtral (MoE).
+          </p>
+        </div>
+        <div>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px]">Open weights</span>
+            <span class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px]">API</span>
+          </div>
+          <a href="https://mistral.ai" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline">
+            mistral.ai →
+          </a>
+        </div>
+      </div>
+
+      <!-- Kyutai -->
+      <div class="card bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between" data-category="labos" data-tags="kyutai moshi speech voice audio open science xavier niel">
+        <div>
+          <div class="flex items-start justify-between mb-2">
+            <h3 class="font-semibold text-base text-zinc-950 dark:text-white">Kyutai</h3>
+            <span class="text-[11px] px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 font-mono">Labo</span>
+          </div>
+          <p class="text-zinc-600 dark:text-zinc-400 text-xs mb-3 leading-normal">
+            Laboratoire de recherche à but non lucratif basé à Paris. Concepteurs de Moshi, modèle vocal multimodal en temps réel, 100 % open source.
+          </p>
+        </div>
+        <div>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px]">Recherche</span>
+            <span class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px]">Audio</span>
+          </div>
+          <a href="https://kyutai.org" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline">
+            kyutai.org →
+          </a>
+        </div>
+      </div>
+
+      <!-- Scaleway -->
+      <div class="card bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between" data-category="cloud" data-tags="scaleway cloud gpu h100 l40s iliad compute datacenter">
+        <div>
+          <div class="flex items-start justify-between mb-2">
+            <h3 class="font-semibold text-base text-zinc-950 dark:text-white">Scaleway</h3>
+            <span class="text-[11px] px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 font-mono">Infra GPU</span>
+          </div>
+          <p class="text-zinc-600 dark:text-zinc-400 text-xs mb-3 leading-normal">
+            Fournisseur cloud souverain (groupe Iliad). Offres de calcul intensif avec grappes NVIDIA H100 et L40S hébergées en France.
+          </p>
+        </div>
+        <div>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px]">NVIDIA H100</span>
+            <span class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px]">Datacenters FR</span>
+          </div>
+          <a href="https://scaleway.com" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline">
+            scaleway.com →
+          </a>
+        </div>
+      </div>
+
+      <!-- Hugging Face -->
+      <div class="card bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between" data-category="communaute" data-tags="hugging face hub transformers datasets open source paris">
+        <div>
+          <div class="flex items-start justify-between mb-2">
+            <h3 class="font-semibold text-base text-zinc-950 dark:text-white">Hugging Face</h3>
+            <span class="text-[11px] px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 font-mono">Plateforme</span>
+          </div>
+          <p class="text-zinc-600 dark:text-zinc-400 text-xs mb-3 leading-normal">
+            La référence internationale pour l'hébergement de modèles et de jeux de données, née à Paris. Équipes R&amp;D centrales en France.
+          </p>
+        </div>
+        <div>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px]">Transformers</span>
+            <span class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px]">Hub</span>
+          </div>
+          <a href="https://huggingface.co" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline">
+            huggingface.co →
+          </a>
+        </div>
+      </div>
+
+      <!-- H Company -->
+      <div class="card bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between" data-category="labos" data-tags="h company holistic ai agents agi iag paris">
+        <div>
+          <div class="flex items-start justify-between mb-2">
+            <h3 class="font-semibold text-base text-zinc-950 dark:text-white">H Company</h3>
+            <span class="text-[11px] px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 font-mono">Labo</span>
+          </div>
+          <p class="text-zinc-600 dark:text-zinc-400 text-xs mb-3 leading-normal">
+            Fondé par d'anciens chercheurs de DeepMind à Paris. Travaux axés sur les agents autonomes et les modèles agents orientés action.
+          </p>
+        </div>
+        <div>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px]">Agents autonomes (IAG)</span>
+            <span class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px]">Modèles agents</span>
+          </div>
+          <a href="https://hcompany.ai" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline">
+            hcompany.ai →
+          </a>
+        </div>
+      </div>
+
+      <!-- Station F -->
+      <div class="card bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between" data-category="communaute" data-tags="station f startups incubateur paris ecosysteme">
+        <div>
+          <div class="flex items-start justify-between mb-2">
+            <h3 class="font-semibold text-base text-zinc-950 dark:text-white">Station F</h3>
+            <span class="text-[11px] px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 font-mono">Hub</span>
+          </div>
+          <p class="text-zinc-600 dark:text-zinc-400 text-xs mb-3 leading-normal">
+            Le grand campus de startups situé à Paris 13e. Accueil des programmes d'accélération dédiés aux technologies d'intelligence artificielle.
+          </p>
+        </div>
+        <div>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px]">Startups</span>
+            <span class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px]">Paris 13</span>
+          </div>
+          <a href="https://stationf.co" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline">
+            stationf.co →
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Aucun résultat -->
+    <div id="noResults" class="hidden text-center py-16">
+      <p class="text-zinc-500 text-xs font-mono">Aucun résultat trouvé pour votre recherche.</p>
+    </div>
+  </main>
+
+  <!-- Pied de page -->
+  <footer class="border-t border-zinc-200 dark:border-zinc-800 py-8 text-xs text-zinc-500">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span>© 2026 Radar IA</span>
+        <span>·</span>
+        <span>Fait en France 🇫🇷 · Code source ouvert</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span>Aucun traceur ni cookie (conforme CNIL)</span>
+        <a href="#mentions" class="hover:underline">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const themeBtn = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      html.classList.add('dark');
+    }
+
+    themeBtn.addEventListener('click', () => html.classList.toggle('dark'));
+
+    const search = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+    const emptyState = document.getElementById('noResults');
+    let activeCat = 'all';
+
+    function runFilter() {
+      const q = search.value.toLowerCase().trim();
+      let matchCount = 0;
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const tags = card.getAttribute('data-tags') || '';
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const desc = card.querySelector('p').textContent.toLowerCase();
+
+        const catOk = (activeCat === 'all') || (cat === activeCat);
+        const queryOk = !q || tags.includes(q) || title.includes(q) || desc.includes(q);
+
+        if (catOk && queryOk) {
+          card.classList.remove('hidden');
+          matchCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      emptyState.classList.toggle('hidden', matchCount > 0);
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-zinc-900', 'dark:bg-white', 'text-white', 'dark:text-zinc-900');
+          b.classList.add('bg-white', 'dark:bg-zinc-900', 'border', 'border-zinc-200', 'dark:border-zinc-800', 'text-zinc-600', 'dark:text-zinc-400');
+        });
+        btn.classList.add('bg-zinc-900', 'dark:bg-white', 'text-white', 'dark:text-zinc-900');
+        btn.classList.remove('bg-white', 'dark:bg-zinc-900', 'border', 'border-zinc-200', 'dark:border-zinc-800', 'text-zinc-600', 'dark:text-zinc-400');
+        activeCat = btn.getAttribute('data-category');
+        runFilter();
+      });
+    });
+
+    search.addEventListener('input', runFilter);
+  </script>
+</body>
 </html>
